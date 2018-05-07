@@ -5,10 +5,16 @@ var Schema = mongoose.Schema;
 var articleSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true,
+    index: { unique: true }
   },
 
   link: {
+    type: String,
+    required: true
+  },
+
+  summary: {
     type: String,
     required: true
   },
@@ -21,10 +27,9 @@ var articleSchema = new Schema({
   saved: {
     type: Boolean,
     default: false
-  }
+  },
 
-
-
+  
 
 });
 
