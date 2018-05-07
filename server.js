@@ -15,6 +15,10 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/articlescraperhwdb");
 
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 app.get("/", function(req, res) {
   res.render("index")
 });
@@ -51,7 +55,7 @@ app.get("/scrape", function(req, res) {
     });
 
     // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
+    res.redirect("/articles");
   });
 });
 
