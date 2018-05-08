@@ -9,7 +9,7 @@ var cheerio = require("cheerio");
 var db = require("./models");
 
 //port and routing
-var PORT = 8080; //put process env stuff
+var PORT = process.end.PORT || 8080; //put process env stuff
 
 var app = express();
 
