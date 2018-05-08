@@ -9,7 +9,7 @@ var cheerio = require("cheerio");
 var db = require("./models");
 
 //port and routing
-var PORT = process.end.PORT || 8080; //put process env stuff
+var PORT = process.env.PORT || 8080; //put process env stuff
 
 var app = express();
 
@@ -17,7 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 //database
-mongoose.connect("mongodb://localhost/articlescraperhwdb");
+var MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/articlescraperhwdb";
+mongoose.Promise;
+mongoose.connect(MONGODB_URI);
 
 //handlebars
 var exphbs = require("express-handlebars");
