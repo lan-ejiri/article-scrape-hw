@@ -1,16 +1,22 @@
+<style>
+    .singlearticle {
+        border: red solid 2px;
+        margin: 5px;
+    }
+</style>
+
+
 {{#each article}}
 <div class="singlearticle">
     <h3>{{this.title}}</h3>
-    <h1>{{this.id}}</h1>
+    {{!-- <h1>{{this.id}}</h1> --}}
     <p>{{this.summary}}</p>
-    <a href="{{this.link}}">Click here to read more.</a>
+    <a href="{{this.link}}">Click here to read more on Kotaku.</a>
 
     <a href="/articles/{{this.id}}">COMMENTS
     </a>
+
+<a href="/favorites/{{this.id}}"><button>Add this article to Favorites</button></a>
+
 </div>
-
-
-
-
-
 {{/each}}

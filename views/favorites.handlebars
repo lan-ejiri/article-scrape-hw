@@ -1,0 +1,28 @@
+<style>
+    .singlearticle {
+        border: red solid 2px;
+        margin: 5px;
+    }
+</style>
+
+
+{{#each article}}
+<div class="singlearticle">
+    <h3>{{this.title}}</h3>
+    {{!--
+    <h1>{{this.id}}</h1> --}}
+    <p>{{this.summary}}</p>
+    <a href="{{this.link}}">Click here to read more.</a>
+
+    <a href="/articles/{{this.id}}">
+        <button>
+            COMMENTS
+        </button>
+    </a>
+
+    <a href="/unfavorite/{{this.id}}">
+        <button>Remove from Favorites</button>
+    </a>
+
+</div>
+{{/each}}
