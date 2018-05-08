@@ -92,13 +92,32 @@ app.get("/articles", function(req, res) {
 });
 //[[works, shows all articles]]
 
-
 app.get("/articles/:id", function(req, res) {
-  //show article title and its comments
+  db.article
+    .findOne({ _id: req.params.id })
+    .then(function(dbArticle) {
+      res.render("comments", { obj: dbArticle });
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
 });
 
 app.post("/articles/:id", function(req, res) {
-   //grab the req.body shit and make comments into article
+  var beh = req.body;
+  db.article
+    .update(
+      { _id: req.params.id },
+      {
+        $push: { comments: { comment: beh.comment, commenter: beh.commenter } }
+      }
+    )
+    .then(function(result) {
+      res.redirect(req.get("referer"));
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
 });
 
 // shows all favorites

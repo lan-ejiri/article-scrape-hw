@@ -45,3 +45,7 @@ body {
 .scrapediv h1 {
   color: rgb(20, 128, 254);
 }
+
+input {
+  margin: 5px;
+}

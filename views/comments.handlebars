@@ -1,16 +1,41 @@
-<h1></h1>
-    Comments for " {{obj.title}} "</h1>
+<div class="row">
+    <div class="singlearticle">
+        <h1>
+            Comments for: <h1></h1>
+            <h2>" {{obj.title}} "</h2>
 
-<form action="/articles/{{obj.id}}" method="POST">
-    Nickname:
-    <input type="text" name="commenter" required>
-    <br> Comment:
-    <input text="textarea" name="comment" required>
-    <br>
-    <input type="submit" value="Submit comment">
-</form>
+        <p>{{obj.summary}}</p>
+        <a href="{{this.link}}">Click here to read more on Kotaku.</a>
 
+    </div>
+</div>
 
-{{#each obj}}
-<li>{{this.comments.comment}}</li>
-{{this.comments.commenter}} {{/each}}
+{{#each obj.comments}}
+<div class="row">
+    <div class="singlearticle">
+        <p>
+            <strong>{{this.commenter}}</strong>
+        </p>
+
+        <p>
+            {{this.comment}}
+        </p>
+
+    </div>
+</div>
+{{/each}}
+
+<div class="row">
+    <div class="singlearticle">
+        <h3>Add Comment</h3>
+        <form action="/articles/{{obj.id}}" method="POST">
+            Nickname:
+            <input type="text" name="commenter" required>
+            <br> Comment:
+            <input text="text-area" name="comment" required>
+            <br>
+            <input type="submit" value="Submit comment">
+
+        </form>
+    </div>
+</div>
