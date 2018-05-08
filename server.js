@@ -24,6 +24,9 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+//static
+app.use(express.static("public"));
+
 //-----------------------------------
 // start routes
 //======================================
@@ -89,22 +92,13 @@ app.get("/articles", function(req, res) {
 });
 //[[works, shows all articles]]
 
-// Route for grabbing a specific Article by id, populate it with it's note
-app.get("/articles/:id", function(req, res) {
-  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-  db.article
-    .findOne({ _id: req.params.id })
-    // ..and populate all of the notes associated with it
-    .populate("Comment")
-    .then(function(dbArticle) {
-      // If we were able to successfully find an Article with the given id, send it back to the client
 
-      res.render("comments", { obj: dbArticle });
-    })
-    .catch(function(err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
+app.get("/articles/:id", function(req, res) {
+  //show article title and its comments
+});
+
+app.post("/articles/:id", function(req, res) {
+   //grab the req.body shit and make comments into article
 });
 
 // shows all favorites
@@ -118,29 +112,29 @@ app.get("/favorites", function(req, res) {
       res.json(err);
     });
 });
+//[[works]]
 
-app.get("/favorites/:id", function(req,res){
-  
-  db.article.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: "true" } })
+app.get("/favorites/:id", function(req, res) {
+  db.article
+    .findOneAndUpdate({ _id: req.params.id }, { $set: { saved: "true" } })
     .then(function(dbArticle) {
       res.redirect("/favorites");
     })
     .catch(function(err) {
       res.json(err);
     });
-})
+}); //[[works]]
 
-app.get("/unfavorite/:id", function(req,res){
-  
-  db.article.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: "false" } })
+app.get("/unfavorite/:id", function(req, res) {
+  db.article
+    .findOneAndUpdate({ _id: req.params.id }, { $set: { saved: "false" } })
     .then(function(dbArticle) {
       res.redirect("/favorites");
     })
     .catch(function(err) {
       res.json(err);
     });
-})
-
+}); //[[works]]
 
 // listening
 app.listen(PORT, function() {

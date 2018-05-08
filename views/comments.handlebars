@@ -1,18 +1,16 @@
-
-
-
-<h1>Comments for " {{obj.title}} "</h1>
+<h1></h1>
+    Comments for " {{obj.title}} "</h1>
 
 <form action="/articles/{{obj.id}}" method="POST">
     Nickname:
     <input type="text" name="commenter" required>
-    <br> 
-    Comment:
+    <br> Comment:
     <input text="textarea" name="comment" required>
     <br>
     <input type="submit" value="Submit comment">
 </form>
 
 
-
-<li>{{obj.comment}}</li>
+{{#each obj}}
+<li>{{this.comments.comment}}</li>
+{{this.comments.commenter}} {{/each}}

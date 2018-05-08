@@ -1,28 +1,31 @@
-<style>
-    .singlearticle {
-        border: red solid 2px;
-        margin: 5px;
-    }
-</style>
-
-
-{{#each article}}
-<div class="singlearticle">
-    <h3>{{this.title}}</h3>
-    {{!--
-    <h1>{{this.id}}</h1> --}}
-    <p>{{this.summary}}</p>
-    <a href="{{this.link}}">Click here to read more.</a>
-
-    <a href="/articles/{{this.id}}">
-        <button>
-            COMMENTS
-        </button>
-    </a>
-
-    <a href="/unfavorite/{{this.id}}">
-        <button>Remove from Favorites</button>
-    </a>
-
+<div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+        <div class="text-center titlething">
+            <h1>Favorite Articles</h1>
+        </div>
+    </div>
+    <div class="col-xs-4"></div>
 </div>
-{{/each}}
+
+<div class="row">
+    {{#each article}}
+    <div class="singlearticle">
+        <h3>{{this.title}}</h3>
+        {{!--
+        <h1>{{this.id}}</h1> --}}
+        <p>{{this.summary}}</p>
+        <a href="{{this.link}}">Click here to read more.</a>
+ 
+        <a class="rightside" href="/articles/{{this.id}}">
+            <button>
+                COMMENTS
+            </button>
+        </a>
+
+        <a class="rightside" href="/unfavorite/{{this.id}}">
+            <button>Remove from Favorites</button>
+        </a>
+
+    </div>
+    {{/each}}</div>

@@ -19,18 +19,17 @@ var articleSchema = new Schema({
     required: true
   },
 
-  comments: {
-    type: Schema.Types.ObjectId,
-    ref: "Comment"
-  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ],
 
   saved: {
     type: Boolean,
     default: false
-  },
-
-  
-
+  }
 });
 
 var article = mongoose.model("Article", articleSchema);
