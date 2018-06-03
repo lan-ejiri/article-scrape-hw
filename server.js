@@ -86,9 +86,8 @@ app.get("/scrape", function(req, res) {
 app.get("/articles", function(req, res) {
   db.article
     .find({})
-    .sort({ created_at: -1 })
     .then(function(dbArticle) {
-      res.render("articles", { article: dbArticle });
+      res.render("articles", { article: dbArticle.reverse() });
     })
     .catch(function(err) {
       res.json(err);
